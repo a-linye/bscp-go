@@ -1,9 +1,9 @@
-name: bkbscp
+name: __PLUGIN_NAME__
 version: "__VERSION__"
-description: bscp服务配置分发和热更新
+description: __DESCRIPTION__
 scenario: bscp服务配置分发和热更新
 category: official
-config_file: bkbscp.conf
+config_file: __PLUGIN_NAME__.conf
 config_format: yaml
 auto_launch: false
 launch_node: all
@@ -11,12 +11,12 @@ is_binary: true
 use_db: false
 config_templates:
   - plugin_version: "__VERSION__"
-    name: bkbscp.conf
+    name: __PLUGIN_NAME__.conf
     version: "__VERSION__"
     file_path: etc
     format: yaml
     is_main_config: 1
-    source_path: etc/bkbscp.conf.tpl
+    source_path: etc/__PLUGIN_NAME__.conf.tpl
     variables:
       title: variables
       type: object
@@ -118,8 +118,8 @@ config_templates:
           required: false
           default: LF
 control:
-  start: "__START_SCRIPT__ bkbscp"
-  stop: "__STOP_SCRIPT__ bkbscp"
-  restart: "__RESTART_SCRIPT__ bkbscp"
-  reload: "__RELOAD_SCRIPT__ bkbscp"
-  version: "./bkbscp -v"
+  start: "__START_SCRIPT__ __PLUGIN_NAME__"
+  stop: "__STOP_SCRIPT__ __PLUGIN_NAME__"
+  restart: "__RESTART_SCRIPT__ __PLUGIN_NAME__"
+  reload: "__RELOAD_SCRIPT__ __PLUGIN_NAME__"
+  version: "./__PLUGIN_NAME__ -v"

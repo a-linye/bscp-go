@@ -24,6 +24,7 @@ bscp-go is an official command-line tool provided by BlueKing Basic Configuratio
 
 - [Containerized Access](./docs/usage.md)
 - [SDK Examples](./examples/README.md)
+- [Legacy Windows Compatibility](./docs/windows-legacy-os.md)
 
 ## Install bscp cmd
 Method 1, with golang environment, you can install it directly

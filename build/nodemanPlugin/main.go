@@ -41,13 +41,20 @@ import (
 )
 
 const (
-	defaultConfigPath    = "../etc/bkbscp.conf"
-	pidFile              = "bkbscp.pid"
-	unitSocketFile       = "bkbscp.sock"
-	logFile              = "bkbscp.log"
 	defaultLogMaxSize    = 500 // megabytes
 	defaultLogMaxBackups = 3
 	defaultLogMaxAge     = 15 // days
+)
+
+// pluginName 由构建时通过 -ldflags -X main.pluginName 注入，默认值即常规插件名。
+// GSE 按插件名下发配置文件并检查 pid 文件，因此这两个名字必须与插件名保持一致。
+var pluginName = "bkbscp"
+
+var (
+	defaultConfigPath = "../etc/" + pluginName + ".conf"
+	pidFile           = pluginName + ".pid"
+	unitSocketFile    = pluginName + ".sock"
+	logFile           = pluginName + ".log"
 )
 
 var (

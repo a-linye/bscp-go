@@ -60,3 +60,31 @@ jobs:
           extra_files: build/nodemanPlugin/bkbscp/plugins_linux_x86_64 build/nodemanPlugin/bkbscp/plugins_windows_x86_64
           asset_name: bscp-${{ github.event.release.tag_name }}-nodemanPlugin
           md5sum: false
+
+  # 面向旧版 Windows（Server 2008 R2 / 2012 / 2012 R2、Win7 SP1 / 8.1）的插件包，只含 Windows
+  # 产物，用打过补丁的 Go 工具链编译。与上面的 bkbscp 包相互独立，同一台主机只能安装其中一个，
+  # 详见 docs/windows-legacy-os.md。
+  release-nodemanPlugin-winLegacy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v3
+
+      # 补丁版工具链体积较大，缓存下来避免每次发布都重新下载。
+      - name: cache patched go toolchain
+        uses: actions/cache@v4
+        with:
+          path: .toolchain
+          key: go-win-toolchain-${{ hashFiles('Makefile', 'scripts/install-go-win-toolchain.sh') }}
+
+      - name: release nodeman plugin for legacy windows
+        uses: wangyoucao577/go-release-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          goversion: 1.23.7
+          goos: linux
+          goarch: amd64
+          build_command: make build_nodemanPlugin_winLegacy VERSION=${{ github.event.release.tag_name }}
+          extra_files: build/nodemanPlugin/bkbscp-win-legacy/plugins_windows_x86_64
+          asset_name: bscp-${{ github.event.release.tag_name }}-nodemanPlugin-win-legacy
+          md5sum: false

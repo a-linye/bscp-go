@@ -25,6 +25,7 @@ bscp-go 是蓝鲸基础配置平台(BK-BSCP)提供的用于快速接入KV SDK，
 
 - [容器化接入](./docs/usage.md)
 - [SDK代码示例](./examples/README.md)
+- [Windows 旧版本兼容说明](./docs/windows-legacy-os.md)
 
 ## 安装 bscp 命令行
 方式1，有 golang 环境，可以直接安装
